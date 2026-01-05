@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celica Suspension DAQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>Celica Suspension DAQ</h1>
+                <span class="vehicle-info">Toyota Celica GT-S (7th Gen)</span>
+            </div>
+            <div class="header-center">
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="recording-controls">
+                    <button id="btnRecord" class="btn btn-record">Start Recording</button>
+                    <button id="btnMarker" class="btn btn-marker" disabled>Add Marker</button>
+                </div>
+                <div class="session-info" id="sessionInfo">
+                    <span class="session-time">00:00:00</span>
+                    <span class="sample-count">0 samples</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Row: Gauges -->
+            <section class="gauge-row">
+                <div class="gauge-card">
+                    <h3>Speed</h3>
+                    <div class="gauge-value" id="gaugeSpeed">0</div>
+                    <div class="gauge-unit">mph</div>
+                </div>
+                <div class="gauge-card">
+                    <h3>Lateral G</h3>
+                    <div class="gauge-value" id="gaugeLateralG">0.00</div>
+                    <div class="gauge-unit">g</div>
+                    <div class="g-bar-container">
+                        <div class="g-bar" id="gBarLateral"></div>
+                    </div>
+                </div>
+                <div class="gauge-card">
+                    <h3>Longitudinal G</h3>
+                    <div class="gauge-value" id="gaugeLongG">0.00</div>
+                    <div class="gauge-unit">g</div>
+                    <div class="g-bar-container vertical">
+                        <div class="g-bar" id="gBarLong"></div>
+                    </div>
+                </div>
+                <div class="gauge-card">
+                    <h3>Roll Angle</h3>
+                    <div class="gauge-value" id="gaugeRoll">0.0</div>
+                    <div class="gauge-unit">deg</div>
+                </div>
+                <div class="gauge-card">
+                    <h3>Pitch Angle</h3>
+                    <div class="gauge-value" id="gaugePitch">0.0</div>
+                    <div class="gauge-unit">deg</div>
+                </div>
+            </section>
+
+            <!-- Middle Row: Suspension Travel -->
+            <section class="suspension-section">
+                <h2>Suspension Travel</h2>
+                <div class="suspension-grid">
+                    <div class="corner-card front-left">
+                        <h4>Front Left</h4>
+                        <div class="travel-bar-container">
+                            <div class="travel-bar" id="travelFL"></div>
+                        </div>
+                        <div class="travel-value" id="valueFL">0.0 mm</div>
+                        <div class="velocity-value" id="velFL">0 mm/s</div>
+                        <div class="temp-value" id="tempFL">--°F</div>
+                    </div>
+                    <div class="car-outline">
+                        <svg viewBox="0 0 100 160" class="car-svg">
+                            <rect x="15" y="20" width="70" height="120" rx="10" fill="none" stroke="#666" stroke-width="2"/>
+                            <ellipse cx="25" cy="35" rx="12" ry="8" fill="none" stroke="#666" stroke-width="2"/>
+                            <ellipse cx="75" cy="35" rx="12" ry="8" fill="none" stroke="#666" stroke-width="2"/>
+                            <ellipse cx="25" cy="125" rx="12" ry="8" fill="none" stroke="#666" stroke-width="2"/>
+                            <ellipse cx="75" cy="125" rx="12" ry="8" fill="none" stroke="#666" stroke-width="2"/>
+                            <text x="50" y="80" text-anchor="middle" fill="#888" font-size="10">FRONT</text>
+                        </svg>
+                    </div>
+                    <div class="corner-card front-right">
+                        <h4>Front Right</h4>
+                        <div class="travel-bar-container">
+                            <div class="travel-bar" id="travelFR"></div>
+                        </div>
+                        <div class="travel-value" id="valueFR">0.0 mm</div>
+                        <div class="velocity-value" id="velFR">0 mm/s</div>
+                        <div class="temp-value" id="tempFR">--°F</div>
+                    </div>
+                    <div class="corner-card rear-left">
+                        <h4>Rear Left</h4>
+                        <div class="travel-bar-container">
+                            <div class="travel-bar" id="travelRL"></div>
+                        </div>
+                        <div class="travel-value" id="valueRL">0.0 mm</div>
+                        <div class="velocity-value" id="velRL">0 mm/s</div>
+                        <div class="temp-value" id="tempRL">--°F</div>
+                    </div>
+                    <div class="corner-card rear-right">
+                        <h4>Rear Right</h4>
+                        <div class="travel-bar-container">
+                            <div class="travel-bar" id="travelRR"></div>
+                        </div>
+                        <div class="travel-value" id="valueRR">0.0 mm</div>
+                        <div class="velocity-value" id="velRR">0 mm/s</div>
+                        <div class="temp-value" id="tempRR">--°F</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Row: Charts -->
+            <section class="charts-section">
+                <div class="chart-card">
+                    <h3>G-G Diagram</h3>
+                    <div id="ggChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Suspension Travel History</h3>
+                    <div id="travelChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Speed Trace</h3>
+                    <div id="speedChart" class="chart-container"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Session List Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Sessions</h3>
+                <button class="btn-close-sidebar" id="btnCloseSidebar">&times;</button>
+            </div>
+            <div class="session-list" id="sessionList">
+                <!-- Sessions loaded dynamically -->
+            </div>
+        </aside>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-left">
+                <button class="btn btn-secondary" id="btnSessions">View Sessions</button>
+                <button class="btn btn-secondary" id="btnCalibrate">Calibration</button>
+                <button class="btn btn-secondary" id="btnSettings">Settings</button>
+            </div>
+            <div class="footer-right">
+                <span class="ambient-temp">Ambient: <span id="ambientTemp">--</span>°F</span>
+                <span class="gps-status" id="gpsStatus">GPS: No Fix</span>
+                <span class="sample-rate" id="sampleRate">0 Hz</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Marker Modal -->
+    <div class="modal" id="markerModal">
+        <div class="modal-content">
+            <h3>Add Marker</h3>
+            <input type="text" id="markerLabel" placeholder="Marker label...">
+            <textarea id="markerNotes" placeholder="Notes..."></textarea>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="btnSaveMarker">Save</button>
+                <button class="btn btn-secondary" id="btnCancelMarker">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{
+  "vehicle": {
+    "make": "Toyota",
+    "model": "Celica GT",
+    "generation": "5th (T180)",
+    "year": 1992,
+    "vin": ""
+  },
+  "weights": {
+    "total_lbs": 2680,
+    "distribution_front_pct": 58,
+    "corner_weights_lbs": {
+      "front_left": 795,
+      "front_right": 780,
+      "rear_left": 565,
+      "rear_right": 540
+    },
+    "unsprung_mass_lbs": {
+      "front_left": 82,
+      "front_right": 82,
+      "rear_left": 72,
+      "rear_right": 72
+    }
+  },
+  "dimensions": {
+    "wheelbase_inches": 99.4,
+    "track_width_front_inches": 57.5,
+    "track_width_rear_inches": 57.1,
+    "cg_height_inches": 19.2,
+    "roll_center_front_inches": 2.2,
+    "roll_center_rear_inches": 5.0
+  },
+  "suspension": {
+    "motion_ratios": {
+      "front": 0.92,
+      "rear": 0.88
+    },
+    "spring_rates_lbs_in": {
+      "front": 400,
+      "rear": 300
+    },
+    "damper_settings": {
+      "front_compression": 8,
+      "front_rebound": 12,
+      "rear_compression": 6,
+      "rear_rebound": 10,
+      "adjustment_range": {
+        "compression": [1, 16],
+        "rebound": [1, 16]
+      }
+    },
+    "sway_bar_rates_lbs_in": {
+      "front": 150,
+      "rear": 85
+    },
+    "bump_stop_engagement_mm": 70,
+    "droop_travel_mm": 80
+  },
+  "tires": {
+    "size": "205/55R15",
+    "brand": "Yokohama Advan Neova AD09",
+    "pressure_cold_psi": {
+      "front": 33,
+      "rear": 31
+    },
+    "rolling_circumference_inches": 79.5
+  },
+  "alignment": {
+    "front_camber_deg": -2.0,
+    "rear_camber_deg": -1.5,
+    "front_toe_deg": 0.1,
+    "rear_toe_deg": 0.15,
+    "caster_deg": 5.8
+  }
+}

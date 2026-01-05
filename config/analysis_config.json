@@ -1,0 +1,129 @@
+{
+  "fft": {
+    "window_size": 1024,
+    "window_type": "hanning",
+    "overlap_pct": 50,
+    "frequency_range_hz": [0.5, 50]
+  },
+  "filters": {
+    "lowpass": {
+      "cutoff_hz": 30,
+      "order": 4,
+      "type": "butterworth"
+    },
+    "highpass": {
+      "cutoff_hz": 0.5,
+      "order": 2,
+      "type": "butterworth"
+    },
+    "derivative": {
+      "method": "savitzky_golay",
+      "window_size": 11,
+      "polynomial_order": 3
+    }
+  },
+  "damper_analysis": {
+    "velocity_bins_mm_s": [-500, -400, -300, -200, -150, -100, -75, -50, -25, 0, 25, 50, 75, 100, 150, 200, 300, 400, 500],
+    "force_estimation": {
+      "method": "unsprung_mass_acceleration",
+      "friction_compensation": true,
+      "friction_coefficient": 0.02
+    },
+    "fade_analysis": {
+      "temperature_bins_f": [80, 100, 120, 140, 160, 180, 200, 220],
+      "min_samples_per_bin": 100
+    }
+  },
+  "ride_analysis": {
+    "iso_2631": {
+      "weighting": "Wk",
+      "axis": "vertical",
+      "rms_window_sec": 1.0
+    },
+    "natural_frequency": {
+      "method": "peak_detection",
+      "expected_range_hz": [1.0, 3.0]
+    },
+    "damping_ratio": {
+      "method": "log_decrement",
+      "min_oscillations": 3
+    },
+    "harshness": {
+      "threshold_g": 2.0,
+      "duration_min_ms": 5
+    }
+  },
+  "handling_analysis": {
+    "roll_gradient": {
+      "lateral_g_bins": [-1.2, -1.0, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2],
+      "steady_state_threshold_deg_s": 5
+    },
+    "transient": {
+      "step_input_threshold_g": 0.3,
+      "settling_threshold_pct": 5,
+      "analysis_window_sec": 3.0
+    },
+    "understeer": {
+      "speed_bins_mph": [30, 40, 50, 60, 70, 80],
+      "min_samples": 50
+    }
+  },
+  "corner_analysis": {
+    "static_measurement": {
+      "settle_time_sec": 5,
+      "variance_threshold_mm": 0.5
+    },
+    "weight_transfer": {
+      "calculation_method": "acceleration_based",
+      "include_unsprung": true
+    }
+  },
+  "track_analysis": {
+    "lap_detection": {
+      "start_finish_coords": {
+        "lat": 35.3456,
+        "lon": -80.6892,
+        "radius_m": 25
+      },
+      "min_lap_time_sec": 60,
+      "max_lap_time_sec": 300
+    },
+    "sectors": [
+      {
+        "name": "Sector 1",
+        "start_coords": {"lat": 35.3456, "lon": -80.6892},
+        "end_coords": {"lat": 35.3478, "lon": -80.6901}
+      },
+      {
+        "name": "Sector 2",
+        "start_coords": {"lat": 35.3478, "lon": -80.6901},
+        "end_coords": {"lat": 35.3491, "lon": -80.6878}
+      },
+      {
+        "name": "Sector 3",
+        "start_coords": {"lat": 35.3491, "lon": -80.6878},
+        "end_coords": {"lat": 35.3456, "lon": -80.6892}
+      }
+    ],
+    "corner_identification": {
+      "lateral_g_threshold": 0.3,
+      "min_duration_sec": 1.0
+    }
+  },
+  "comparison": {
+    "statistical_tests": {
+      "significance_level": 0.05,
+      "min_samples": 100
+    },
+    "delta_thresholds": {
+      "significant_change_pct": 5,
+      "warning_change_pct": 10
+    }
+  },
+  "output": {
+    "plot_dpi": 150,
+    "plot_format": "png",
+    "report_format": "html",
+    "decimal_places": 3
+  }
+}

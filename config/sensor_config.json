@@ -1,0 +1,218 @@
+{
+  "i2c": {
+    "bus": 1,
+    "multiplexer": {
+      "address": "0x70",
+      "type": "TCA9548A",
+      "channels": {
+        "0": "mpu6050_front_left",
+        "1": "mpu6050_front_right",
+        "2": "mpu6050_rear_left",
+        "3": "mpu6050_rear_right"
+      }
+    }
+  },
+  "accelerometers": {
+    "body_center": {
+      "address": "0x68",
+      "type": "MPU6050",
+      "range_g": 8,
+      "gyro_range_dps": 500,
+      "sample_rate_hz": 100,
+      "dlpf_bandwidth_hz": 44,
+      "calibration": {
+        "accel_offset": [0.012, -0.008, 0.045],
+        "accel_scale": [1.002, 0.998, 1.001],
+        "gyro_offset": [1.25, -0.85, 0.42],
+        "rotation_matrix": [
+          [1, 0, 0],
+          [0, 1, 0],
+          [0, 0, 1]
+        ]
+      },
+      "mounting": {
+        "position": "transmission_tunnel",
+        "orientation": "x_forward_z_up"
+      }
+    },
+    "corner_sensors": {
+      "front_left": {
+        "multiplexer_channel": 0,
+        "address": "0x68",
+        "type": "MPU6050",
+        "range_g": 8,
+        "calibration": {
+          "accel_offset": [0.015, -0.010, 0.038],
+          "accel_scale": [1.001, 0.999, 1.002]
+        },
+        "mounting": {
+          "position": "lower_control_arm",
+          "orientation": "z_vertical"
+        }
+      },
+      "front_right": {
+        "multiplexer_channel": 1,
+        "address": "0x68",
+        "type": "MPU6050",
+        "range_g": 8,
+        "calibration": {
+          "accel_offset": [0.008, -0.012, 0.041],
+          "accel_scale": [0.999, 1.001, 1.000]
+        },
+        "mounting": {
+          "position": "lower_control_arm",
+          "orientation": "z_vertical"
+        }
+      },
+      "rear_left": {
+        "multiplexer_channel": 2,
+        "address": "0x68",
+        "type": "MPU6050",
+        "range_g": 8,
+        "calibration": {
+          "accel_offset": [0.011, -0.009, 0.036],
+          "accel_scale": [1.000, 1.001, 0.999]
+        },
+        "mounting": {
+          "position": "trailing_arm",
+          "orientation": "z_vertical"
+        }
+      },
+      "rear_right": {
+        "multiplexer_channel": 3,
+        "address": "0x68",
+        "type": "MPU6050",
+        "range_g": 8,
+        "calibration": {
+          "accel_offset": [0.009, -0.011, 0.039],
+          "accel_scale": [1.001, 0.998, 1.001]
+        },
+        "mounting": {
+          "position": "trailing_arm",
+          "orientation": "z_vertical"
+        }
+      }
+    }
+  },
+  "potentiometers": {
+    "type": "linear_100mm",
+    "adc_modules": {
+      "front_left": {
+        "address": "0x48",
+        "type": "ADS1115",
+        "channel": 0,
+        "gain": 1,
+        "sample_rate": 860,
+        "calibration": {
+          "voltage_min": 0.25,
+          "voltage_max": 4.75,
+          "position_min_mm": 0,
+          "position_max_mm": 100,
+          "zero_offset_mm": 52.5
+        }
+      },
+      "front_right": {
+        "address": "0x49",
+        "type": "ADS1115",
+        "channel": 0,
+        "gain": 1,
+        "sample_rate": 860,
+        "calibration": {
+          "voltage_min": 0.24,
+          "voltage_max": 4.76,
+          "position_min_mm": 0,
+          "position_max_mm": 100,
+          "zero_offset_mm": 51.8
+        }
+      },
+      "rear_left": {
+        "address": "0x4A",
+        "type": "ADS1115",
+        "channel": 0,
+        "gain": 1,
+        "sample_rate": 860,
+        "calibration": {
+          "voltage_min": 0.26,
+          "voltage_max": 4.74,
+          "position_min_mm": 0,
+          "position_max_mm": 100,
+          "zero_offset_mm": 54.2
+        }
+      },
+      "rear_right": {
+        "address": "0x4B",
+        "type": "ADS1115",
+        "channel": 0,
+        "gain": 1,
+        "sample_rate": 860,
+        "calibration": {
+          "voltage_min": 0.25,
+          "voltage_max": 4.75,
+          "position_min_mm": 0,
+          "position_max_mm": 100,
+          "zero_offset_mm": 53.8
+        }
+      }
+    }
+  },
+  "gps": {
+    "type": "NEO-6M",
+    "port": "/dev/serial0",
+    "baud_rate": 9600,
+    "update_rate_hz": 10,
+    "antenna": "active_ceramic"
+  },
+  "obd": {
+    "type": "ELM327",
+    "protocol": "bluetooth",
+    "mac_address": "00:1D:A5:68:98:8B",
+    "port": "/dev/rfcomm0",
+    "baud_rate": 38400,
+    "pids_supported": [
+      "SPEED",
+      "RPM",
+      "THROTTLE_POS",
+      "COOLANT_TEMP"
+    ],
+    "custom_pids": {
+      "steering_angle": {
+        "mode": "21",
+        "pid": "B4",
+        "formula": "(A*256+B-32768)/10",
+        "unit": "degrees"
+      }
+    }
+  },
+  "temperature": {
+    "type": "DS18B20",
+    "bus": "w1",
+    "resolution_bits": 12,
+    "sensors": {
+      "shock_fl": {
+        "id": "28-0316a2795cff",
+        "location": "front_left_shock_body"
+      },
+      "shock_fr": {
+        "id": "28-0316a27a45ff",
+        "location": "front_right_shock_body"
+      },
+      "shock_rl": {
+        "id": "28-0316a27b12ff",
+        "location": "rear_left_shock_body"
+      },
+      "shock_rr": {
+        "id": "28-0316a27c89ff",
+        "location": "rear_right_shock_body"
+      },
+      "ambient": {
+        "id": "28-0316a27d56ff",
+        "location": "engine_bay_inlet"
+      }
+    }
+  },
+  "sampling": {
+    "target_rate_hz": 100,
+    "buffer_size": 1000,
+    "write_interval_ms": 1000
+  }
+}

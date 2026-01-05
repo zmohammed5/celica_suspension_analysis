@@ -1,0 +1,56 @@
+{
+  "damper_analysis": {
+    "front_left": {
+      "rms_velocity_mm_s": 45.2,
+      "peak_velocity_mm_s": 187.3,
+      "compression_ratio": 0.52,
+      "rebound_ratio": 0.48,
+      "temperature_rise_c": 32.1
+    },
+    "front_right": {
+      "rms_velocity_mm_s": 43.8,
+      "peak_velocity_mm_s": 179.5,
+      "compression_ratio": 0.51,
+      "rebound_ratio": 0.49,
+      "temperature_rise_c": 29.4
+    },
+    "rear_left": {
+      "rms_velocity_mm_s": 38.1,
+      "peak_velocity_mm_s": 156.2,
+      "compression_ratio": 0.53,
+      "rebound_ratio": 0.47,
+      "temperature_rise_c": 26.8
+    },
+    "rear_right": {
+      "rms_velocity_mm_s": 37.5,
+      "peak_velocity_mm_s": 151.8,
+      "compression_ratio": 0.52,
+      "rebound_ratio": 0.48,
+      "temperature_rise_c": 24.2
+    }
+  },
+  "ride_analysis": {
+    "body_natural_frequency_hz": 1.21,
+    "wheel_hop_frequency_hz": 11.8,
+    "damping_ratio": 0.31,
+    "ride_comfort_score": 7.2,
+    "harshness_events": 8,
+    "iso_2631_weighted_rms": 0.42
+  },
+  "handling_analysis": {
+    "roll_gradient_deg_per_g": 3.2,
+    "pitch_gradient_deg_per_g": 1.8,
+    "understeer_gradient_deg_per_g": 2.1,
+    "max_lateral_g": 0.92,
+    "max_combined_g": 1.15,
+    "transient_response_time_sec": 0.18
+  },
+  "corner_weights": {
+    "front_left_pct": 31.2,
+    "front_right_pct": 30.1,
+    "rear_left_pct": 19.8,
+    "rear_right_pct": 18.9,
+    "cross_weight_pct": 50.1,
+    "front_weight_pct": 61.3
+  }
+}

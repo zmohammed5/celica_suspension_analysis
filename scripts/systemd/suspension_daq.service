@@ -1,0 +1,25 @@
+[Unit]
+Description=Celica Suspension Data Acquisition System
+After=network.target bluetooth.target
+Wants=network.target bluetooth.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/celica_suspension_analysis
+Environment=PATH=/home/pi/celica_suspension_analysis/venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/pi/celica_suspension_analysis/venv/bin/python src/main.py
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=append:/home/pi/celica_suspension_analysis/logs/service.log
+StandardError=append:/home/pi/celica_suspension_analysis/logs/service_error.log
+
+# Resource limits
+MemoryLimit=512M
+CPUQuota=80%
+
+[Install]
+WantedBy=multi-user.target

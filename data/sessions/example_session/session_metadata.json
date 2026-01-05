@@ -1,0 +1,91 @@
+{
+  "session_id": "20260105_143000",
+  "start_time": "2026-01-05T14:30:00",
+  "end_time": "2026-01-05T14:35:00",
+  "duration_seconds": 300,
+  "sample_rate_hz": 100,
+  "total_samples": 30000,
+  "vehicle": {
+    "make": "Toyota",
+    "model": "Celica GT",
+    "year": 1992,
+    "vin": "JT2ST87K0N0******"
+  },
+  "track": {
+    "name": "Local Autocross Course",
+    "location": "Charlotte, NC",
+    "surface": "asphalt",
+    "conditions": "dry"
+  },
+  "setup": {
+    "front_spring_rate_lbs_in": 350,
+    "rear_spring_rate_lbs_in": 250,
+    "front_damper_setting": 8,
+    "rear_damper_setting": 6,
+    "front_arb_setting": "stiff",
+    "rear_arb_setting": "medium",
+    "tire_pressure_front_psi": 35,
+    "tire_pressure_rear_psi": 33
+  },
+  "weather": {
+    "temperature_f": 62,
+    "humidity_pct": 45,
+    "wind_mph": 8
+  },
+  "laps": [
+    {
+      "lap_number": 1,
+      "lap_time_sec": 44.82,
+      "best_sector_1": false,
+      "best_sector_2": false,
+      "best_sector_3": false
+    },
+    {
+      "lap_number": 2,
+      "lap_time_sec": 43.95,
+      "best_sector_1": true,
+      "best_sector_2": false,
+      "best_sector_3": false
+    },
+    {
+      "lap_number": 3,
+      "lap_time_sec": 44.21,
+      "best_sector_1": false,
+      "best_sector_2": true,
+      "best_sector_3": false
+    },
+    {
+      "lap_number": 4,
+      "lap_time_sec": 43.67,
+      "best_sector_1": false,
+      "best_sector_2": false,
+      "best_sector_3": true
+    },
+    {
+      "lap_number": 5,
+      "lap_time_sec": 43.52,
+      "best_sector_1": false,
+      "best_sector_2": true,
+      "best_sector_3": true
+    },
+    {
+      "lap_number": 6,
+      "lap_time_sec": 44.15,
+      "best_sector_1": false,
+      "best_sector_2": false,
+      "best_sector_3": false
+    }
+  ],
+  "analysis_summary": {
+    "best_lap_time_sec": 43.52,
+    "average_lap_time_sec": 44.05,
+    "max_speed_mph": 78.3,
+    "max_lateral_g": 0.92,
+    "max_braking_g": 0.68,
+    "front_natural_frequency_hz": 1.18,
+    "rear_natural_frequency_hz": 1.35,
+    "front_damping_ratio": 0.32,
+    "rear_damping_ratio": 0.28,
+    "ride_quality_score": 7.2
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "vehicle_info": {
+    "year": 1992,
+    "make": "Toyota",
+    "model": "Celica GT",
+    "generation": "5th Gen (T180)",
+    "description": "Front-wheel drive sport coupe with MacPherson strut front, multi-link rear"
+  },
+  "basic_dimensions": {
+    "wheelbase_inches": 99.9,
+    "front_track_inches": 58.1,
+    "rear_track_inches": 57.9,
+    "overall_length_inches": 174.8,
+    "overall_width_inches": 67.1,
+    "overall_height_inches": 50.8,
+    "ground_clearance_inches": 5.5
+  },
+  "weight_distribution": {
+    "curb_weight_lbs": 2690,
+    "front_weight_percent": 61.5,
+    "rear_weight_percent": 38.5,
+    "cg_height_inches": 19.5,
+    "cg_from_front_axle_inches": 48.2
+  },
+  "tire_specifications": {
+    "front_tire": "195/60R15",
+    "rear_tire": "195/60R15",
+    "tire_diameter_inches": 24.2,
+    "tire_width_mm": 195,
+    "aspect_ratio": 60,
+    "rim_diameter_inches": 15,
+    "loaded_radius_inches": 11.4
+  },
+  "front_suspension": {
+    "type": "MacPherson Strut",
+    "spring_type": "Coil over strut",
+    "stabilizer_bar": true,
+    "stabilizer_bar_diameter_mm": 22,
+    "strut_tube_diameter_mm": 50
+  },
+  "rear_suspension": {
+    "type": "Multi-link independent",
+    "spring_type": "Coil spring, separate from damper",
+    "stabilizer_bar": true,
+    "stabilizer_bar_diameter_mm": 16,
+    "links": ["Upper control arm", "Lower control arm", "Trailing arm", "Toe control link"]
+  },
+  "front_geometry_nominal": {
+    "comment": "Measurements at ride height, relative to front axle centerline",
+    "coordinate_system": "X=forward, Y=right, Z=up, origin at front axle center on ground",
+
+    "left_strut_top_mount": {"x": 4.2, "y": -24.5, "z": 28.3},
+    "left_lca_inner_front": {"x": 10.5, "y": -11.2, "z": 6.8},
+    "left_lca_inner_rear": {"x": -2.3, "y": -11.8, "z": 6.5},
+    "left_ball_joint": {"x": 4.8, "y": -26.7, "z": 10.2},
+    "left_wheel_center": {"x": 0.0, "y": -29.05, "z": 12.1},
+    "left_tie_rod_inner": {"x": 8.9, "y": -7.2, "z": 8.1},
+    "left_tie_rod_outer": {"x": 2.1, "y": -27.8, "z": 9.8},
+    "left_contact_patch": {"x": 0.0, "y": -29.05, "z": 0.0},
+
+    "right_strut_top_mount": {"x": 4.2, "y": 24.5, "z": 28.3},
+    "right_lca_inner_front": {"x": 10.5, "y": 11.2, "z": 6.8},
+    "right_lca_inner_rear": {"x": -2.3, "y": 11.8, "z": 6.5},
+    "right_ball_joint": {"x": 4.8, "y": 26.7, "z": 10.2},
+    "right_wheel_center": {"x": 0.0, "y": 29.05, "z": 12.1},
+    "right_tie_rod_inner": {"x": 8.9, "y": 7.2, "z": 8.1},
+    "right_tie_rod_outer": {"x": 2.1, "y": 27.8, "z": 9.8},
+    "right_contact_patch": {"x": 0.0, "y": 29.05, "z": 0.0}
+  },
+  "front_geometry_full_droop": {
+    "left_ball_joint": {"x": 4.8, "y": -26.85, "z": 7.1},
+    "left_wheel_center": {"x": 0.0, "y": -29.15, "z": 8.9},
+    "right_ball_joint": {"x": 4.8, "y": 26.85, "z": 7.1},
+    "right_wheel_center": {"x": 0.0, "y": 29.15, "z": 8.9},
+    "camber_left_deg": 0.2,
+    "camber_right_deg": -0.2
+  },
+  "front_geometry_full_bump": {
+    "left_ball_joint": {"x": 4.8, "y": -26.55, "z": 13.4},
+    "left_wheel_center": {"x": 0.0, "y": -28.95, "z": 15.4},
+    "right_ball_joint": {"x": 4.8, "y": 26.55, "z": 13.4},
+    "right_wheel_center": {"x": 0.0, "y": 28.95, "z": 15.4},
+    "camber_left_deg": -2.8,
+    "camber_right_deg": 2.8
+  },
+  "front_static_alignment": {
+    "camber_left_deg": -1.2,
+    "camber_right_deg": 1.2,
+    "caster_left_deg": 3.8,
+    "caster_right_deg": 3.8,
+    "toe_left_deg": 0.05,
+    "toe_right_deg": -0.05,
+    "toe_total_deg": 0.1
+  },
+  "rear_geometry_nominal": {
+    "comment": "Measurements relative to rear axle, origin at rear axle center on ground",
+    "left_wheel_center": {"x": 0.0, "y": -28.95, "z": 12.1},
+    "left_upper_arm_inner": {"x": 2.1, "y": -10.8, "z": 14.5},
+    "left_upper_arm_outer": {"x": -1.2, "y": -22.3, "z": 13.8},
+    "left_lower_arm_inner": {"x": 8.5, "y": -12.1, "z": 7.2},
+    "left_lower_arm_outer": {"x": 0.8, "y": -23.9, "z": 8.9},
+    "left_trailing_arm_front": {"x": 24.5, "y": -13.2, "z": 9.1},
+    "left_trailing_arm_rear": {"x": -2.3, "y": -23.1, "z": 10.5},
+
+    "right_wheel_center": {"x": 0.0, "y": 28.95, "z": 12.1},
+    "right_upper_arm_inner": {"x": 2.1, "y": 10.8, "z": 14.5},
+    "right_upper_arm_outer": {"x": -1.2, "y": 22.3, "z": 13.8},
+    "right_lower_arm_inner": {"x": 8.5, "y": 12.1, "z": 7.2},
+    "right_lower_arm_outer": {"x": 0.8, "y": 23.9, "z": 8.9},
+    "right_trailing_arm_front": {"x": 24.5, "y": 13.2, "z": 9.1},
+    "right_trailing_arm_rear": {"x": -2.3, "y": 23.1, "z": 10.5}
+  },
+  "rear_static_alignment": {
+    "camber_left_deg": -1.5,
+    "camber_right_deg": 1.5,
+    "toe_left_deg": 0.08,
+    "toe_right_deg": -0.08,
+    "toe_total_deg": 0.16
+  },
+  "spring_damper_specs": {
+    "front_spring_rate_lbs_in": 180,
+    "rear_spring_rate_lbs_in": 160,
+    "front_spring_free_length_inches": 12.5,
+    "rear_spring_free_length_inches": 11.8,
+    "front_damper_stroke_inches": 5.2,
+    "rear_damper_stroke_inches": 4.8
+  },
+  "notes": [
+    "All measurements in inches unless specified",
+    "Coordinate system: X forward, Y right (driver's right), Z up",
+    "Origin for front: center of front axle at ground level",
+    "Origin for rear: center of rear axle at ground level",
+    "Ride height is with driver weight (175 lbs)",
+    "Measurements taken with digital caliper and plumb bob",
+    "Full bump = +3.2 inches from ride height",
+    "Full droop = -3.2 inches from ride height"
+  ]
+}
